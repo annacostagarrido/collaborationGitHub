@@ -14,6 +14,7 @@ args = parser.parse_args()
 # Sequence to upper case:
 args.seq = args.seq.upper()
 
+# Code to identifiy if the sequence is DNA or RNA or neither of them
 def seq_type(seq):
     if re.search('^[ACGTUN]+$', seq): # If the seq contains these characters is DNA or RNA
         if "U" not in seq and "T" in seq: # If the seq contains T but not U, is DNA
@@ -26,16 +27,15 @@ def seq_type(seq):
         return('The sequence is not DNA nor RNA')
 
 # Code to calculate the percentage of each nucleotide:
-
-if seq_type(args.seq)=="DNA": # If it contains any of these nucleotides
+if seq_type(args.seq)=="DNA": # If the sequence is DNA, compute the percentage of the nucleotides from the list
      dna_char = ["A", "G", "C", "T"]
      for base in dna_char: # For each nucleotide, compute its percentage
             print("The percentatge of nucleotide", base, "is", args.seq.count(base) / len(args.seq) * 100, "%")
-elif seq_type(args.seq)=="RNA": # If it contains any of these nucleotides
+elif seq_type(args.seq)=="RNA": # If the sequence is RNA, compute the percentage of the nucleotides from the list
      dna_char = ["A", "G", "C", "U"]
      for base in dna_char: # For each nucleotide, compute its percentage
             print("The percentatge of nucleotide", base, "is", args.seq.count(base) / len(args.seq) * 100, "%")
-elif seq_type(args.seq)=="DNA or RNA": # If it contains any of these nucleotides
+elif seq_type(args.seq)=="DNA or RNA": # If the sequence does not contain T or U but A, G or C is present, campute the percentage of the nucleotides from the list
      dna_char = ["A", "G", "C"]
      for base in dna_char: # For each nucleotide, compute its percentage
             print("The percentatge of nucleotide", base, "is", args.seq.count(base) / len(args.seq) * 100, "%")
